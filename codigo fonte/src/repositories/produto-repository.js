@@ -41,7 +41,7 @@ async function insert(produto) {
             }
         });
         stmt.finalize();
-        const stmt2 = db.prepare('SELECT seq FROM sqlite_sequence WHERE name = "Produto"');
+        const stmt2 = db.prepare('SELECT seq FROM sqlite_sequence WHERE name = "Produtos"');
         stmt2.get((err, row) => {
             resolve(findById(row ? row['seq'] + 1 : 1));
         });  
