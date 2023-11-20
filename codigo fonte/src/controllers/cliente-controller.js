@@ -21,8 +21,8 @@ async function post(req, res) {
         if (existeCpf) {
             return res.status(400).json({ error: 'CPF já cadastrado.' });
         }
-        const user = await clienteRepository.insert(req.body);
-        res.status(201).json(user);
+        const cliente = await clienteRepository.insert(req.body);
+        res.status(201).json(cliente);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro do Servidor Interno.' });
