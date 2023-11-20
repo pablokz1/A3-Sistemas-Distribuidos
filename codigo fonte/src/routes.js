@@ -2,6 +2,7 @@ const express = require('express');
 const clienteController = require('./controllers/cliente-controller');
 const produtoController = require('./controllers/produto-controller');
 const estoqueController = require('./controllers/estoque-controller');
+const vendaController = require('./controllers/venda-controller');
 
 const routes = express();
 
@@ -22,5 +23,11 @@ routes.get('/estoque/:id', estoqueController.getById);
 routes.post('/estoque', estoqueController.post);
 routes.put('/estoque/:id', estoqueController.putById);
 routes.delete('/estoque/:id', estoqueController.deleteById);
+
+routes.get('/venda', vendaController.get);
+routes.get('/venda/:id', vendaController.getById);
+routes.post('/venda', vendaController.post);
+routes.put('/venda/:id', vendaController.putById);
+routes.delete('/venda/:id', vendaController.deleteById);
 
 module.exports = routes;
