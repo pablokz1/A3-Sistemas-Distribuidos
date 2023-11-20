@@ -8,6 +8,10 @@ async function get(req, res) {
 
 async function getById(req, res) {
     const produto = await produtoRepository.findById(req.params.id);
+    if (!produto) {
+        res.status(404).json({message: 'Produto não encontrado!'});
+        return;
+    }
     res.json(produto);
 }
 

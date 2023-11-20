@@ -49,10 +49,10 @@ async function insert(produto) {
     });
 }
 
-async function update(cliente) {
+async function update(produto) {
     return new Promise((resolve, reject) => {
         const stmt = db.prepare('UPDATE Produtos SET nome = ?, descricao = ?, preco = ? WHERE id = ?');
-        stmt.bind([cliente.nome, cliente.descricao, cliente.preco, cliente.id]);
+        stmt.bind([produto.nome, produto.descricao, produto.preco, produto.id]);
         stmt.run(err => {
             if (err) {
                 console.error('Ocorreu um erro na atualização do produto!');

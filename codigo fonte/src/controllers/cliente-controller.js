@@ -8,6 +8,10 @@ async function get(req, res) {
 
 async function getById(req, res) {
     const cliente = await clienteRepository.findById(req.params.id);
+    if (!cliente) {
+        res.status(404).json({message: 'Cliente não encontrado!'});
+        return;
+    }
     res.json(cliente);
 }
 

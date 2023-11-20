@@ -31,16 +31,16 @@ db.serialize(() => {
     db.run("INSERT OR IGNORE INTO Venda (id, clienteId, produtoId, data_venda, valor_total) VALUES (4, 4, 3, '2023-11-24', '240.00')");
     db.run("INSERT OR IGNORE INTO Venda (id, clienteId, produtoId, data_venda, valor_total) VALUES (5, 5, 1, '2023-11-25', '50.00')");
     
-    db.run("INSERT OR IGNORE INTO Estoque (produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (1, 100, 10, 0)");
-    db.run("INSERT OR IGNORE INTO Estoque (produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (2, 75, 5, 0)");
-    db.run("INSERT OR IGNORE INTO Estoque (produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (3, 50, 2, 0)");
-    db.run("INSERT OR IGNORE INTO Estoque (produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (4, 120, 8, 0)");
-    db.run("INSERT OR IGNORE INTO Estoque (produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (5, 90, 3, 0)");
-    db.run("INSERT OR IGNORE INTO Estoque (produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (6, 110, 7, 0)");
-    db.run("INSERT OR IGNORE INTO Estoque (produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (7, 60, 4, 0)");
-    db.run("INSERT OR IGNORE INTO Estoque (produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (8, 30, 6, 1)");
-    db.run("INSERT OR IGNORE INTO Estoque (produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (9, 80, 9, 0)");
-    db.run("INSERT OR IGNORE INTO Estoque (produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (10, 95, 1, 0)");
+    db.run("INSERT OR IGNORE INTO Estoque (id, produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (1, 1, 100, 10, 0)");
+    db.run("INSERT OR IGNORE INTO Estoque (id, produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (2, 2, 75, 5, 0)");
+    db.run("INSERT OR IGNORE INTO Estoque (id, produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (3, 3, 50, 2, 0)");
+    db.run("INSERT OR IGNORE INTO Estoque (id, produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (4, 4, 120, 8, 0)");
+    db.run("INSERT OR IGNORE INTO Estoque (id, produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (5, 5, 90, 3, 0)");
+    db.run("INSERT OR IGNORE INTO Estoque (id, produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (6, 6, 110, 7, 0)");
+    db.run("INSERT OR IGNORE INTO Estoque (id, produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (7, 7, 60, 4, 0)");
+    db.run("INSERT OR IGNORE INTO Estoque (id, produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (8, 8, 30, 6, 1)");
+    db.run("INSERT OR IGNORE INTO Estoque (id, produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (9, 9, 80, 9, 0)");
+    db.run("INSERT OR IGNORE INTO Estoque (id, produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES (10, 10, 95, 1, 0)");
 
 });
 
