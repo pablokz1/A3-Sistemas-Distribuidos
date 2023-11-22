@@ -3,7 +3,7 @@ const db = require('../configs/database');
 async function findAll() {
     return new Promise((resolve, reject) => {
         const produtos = [];
-        db.each('SELECT * FROM Produtos ORDER BY id', (err, row) => {
+        db.each('SELECT * FROM Produto ORDER BY id', (err, row) => {
             if (err) {
                 console.error('Ocorreu um erro ao localizar todos os produtos!');
                 reject(err);
@@ -18,7 +18,7 @@ async function findAll() {
 
 async function findById(id) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('SELECT * FROM Produtos WHERE id = ?', [id]);
+        const stmt = db.prepare('SELECT * FROM Produto WHERE id = ?', [id]);
         stmt.get((err, row) => {
             if (err) {
                 console.error('Ocorreu um erro ao localizar produto pelo ID!');
@@ -32,7 +32,7 @@ async function findById(id) {
 
 async function insert(produto) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('INSERT INTO Produtos(nome, descricao, preco) VALUES(?, ?, ?)');
+        const stmt = db.prepare('INSERT INTO Produto(nome, descricao, preco) VALUES(?, ?, ?)');
         stmt.bind([produto.nome, produto.descricao, produto.preco]);
         stmt.run(err => {
             if (err) {
@@ -51,7 +51,7 @@ async function insert(produto) {
 
 async function update(produto) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('UPDATE Produtos SET nome = ?, descricao = ?, preco = ? WHERE id = ?');
+        const stmt = db.prepare('UPDATE Produto SET nome = ?, descricao = ?, preco = ? WHERE id = ?');
         stmt.bind([produto.nome, produto.descricao, produto.preco, produto.id]);
         stmt.run(err => {
             if (err) {
@@ -66,7 +66,7 @@ async function update(produto) {
 
 async function deleteById(id) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('DELETE FROM Produtos WHERE id = ?');
+        const stmt = db.prepare('DELETE FROM Produto WHERE id = ?');
         stmt.bind([id]);
         stmt.run(err => {
             if (err) {

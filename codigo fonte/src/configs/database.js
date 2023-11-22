@@ -4,8 +4,8 @@ const db = new sqlite3.Database('database.db');
 
 db.serialize(() => {
     db.run('CREATE TABLE IF NOT EXISTS Cliente(id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, email TEXT NOT NULL, cpf TEXT)');
-    db.run('CREATE TABLE IF NOT EXISTS Produto(id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, descricao TEXT, preco DECIMAL NOT NULL)');
-    db.run('CREATE TABLE IF NOT EXISTS Venda(id INTEGER PRIMARY KEY AUTOINCREMENT, clienteId INTEGER NOT NULL, produtoId INTEGER NOT NULL, data_venda DATE NOT NULL, quantidade_produtos_vendidos INTEGER NOT NULL, valor_total TEXT NOT NULL, FOREIGN KEY(clienteId) REFERENCES Cliente(id) FOREIGN KEY(produtoId) REFERENCES Produto(id))');
+    db.run('CREATE TABLE IF NOT EXISTS Produto(id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, descricao TEXT, preco DECIMAL(15,2) NOT NULL)');
+    db.run('CREATE TABLE IF NOT EXISTS Venda(id INTEGER PRIMARY KEY AUTOINCREMENT, clienteId INTEGER NOT NULL, produtoId INTEGER NOT NULL, data_venda DATE NOT NULL, quantidade_produtos_vendidos INTEGER NOT NULL, valor_total DECIMAL(15,2) NOT NULL, FOREIGN KEY(clienteId) REFERENCES Cliente(id) FOREIGN KEY(produtoId) REFERENCES Produto(id))');
     db.run('CREATE TABLE IF NOT EXISTS Estoque(id INTEGER PRIMARY KEY AUTOINCREMENT, produtoId INTEGER NOT NULL, quantidade_em_estoque INTEGER NOT NULL, quantidade_venda INTEGER NOT NULL, FOREIGN KEY(produtoId) REFERENCES Produto(id))');
 
     db.run("INSERT OR IGNORE INTO Cliente (id, nome, email, cpf) VALUES (1, 'João Silva', 'joao@example.com', '123.456.789-00')");

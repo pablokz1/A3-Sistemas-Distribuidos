@@ -30,6 +30,20 @@ async function findById(id) {
     });
 }
 
+async function findByProdutoId(id) {
+    return new Promise((resolve, reject) => {
+        const stmt = db.prepare('SELECT * FROM Estoque WHERE produtoId = ?', [id]);
+        stmt.get((err, row) => {
+            if (err) {
+                console.error('Ocorreu um erro ao localizar estoque pelo ID!');
+                reject(err);
+            }
+            resolve(row);
+        });
+        stmt.finalize();
+    });
+}
+
 async function insert(estoque) {
     return new Promise((resolve, reject) => {
         const stmt = db.prepare('INSERT INTO Estoque(produtoId, quantidade_em_estoque, quantidade_venda, quantidade_baixa_estoque) VALUES(?, ?, ?, ?)');
@@ -64,6 +78,21 @@ async function update(estoque) {
     });
 }
 
+async function updateQuantidadeProduto(id, qtdVendida) {
+    return new Promise((resolve, reject) => {
+        const stmt = db.prepare('UPDATE Estoque SET quantidade_em_estoque = (quantidade_em_estoque - ?), quantidade_venda = (quantidade_venda + ?) WHERE produtoId = ?');
+        stmt.bind([qtdVendida, qtdVendida, id]);
+        stmt.run(err => {
+            if (err) {
+                console.error('Ocorreu um erro na atualização do estoque!');
+                reject(err);
+            }
+            resolve();
+        });
+        stmt.finalize();
+    });
+}
+
 async function deleteById(id) {
     return new Promise((resolve, reject) => {
         const stmt = db.prepare('DELETE FROM Estoque WHERE id = ?');
@@ -79,4 +108,4 @@ async function deleteById(id) {
    });
 }
 
-module.exports = {findAll, findById, insert, update, deleteById};
+module.exports = {findAll, findById, findByProdutoId, insert, update, updateQuantidadeProduto, deleteById};

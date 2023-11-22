@@ -1,4 +1,6 @@
 const vendaRepository = require('../repositories/venda-repository');
+const estoqueRepository = require('../repositories/estoque-repository');
+const produtoRepository = require('../repositories/produto-repository');
 
 
 async function get(req, res) {
@@ -17,7 +19,15 @@ async function getById(req, res) {
 
 async function post(req, res) {
     try {
+        const estoque = await estoqueRepository.findByProdutoId(req.body['produtoId']);
+        if(estoque.quantidade_em_estoque < req.body['quantidade_produtos_vendidos']) {
+            res.status(400).json({ message: 'Não existe estoque suficiente para efetuar essa venda!'})
+            return;
+        }
+        const produto = await produtoRepository.findById(req.body['produtoId']);
+        req.body['valor_total'] = produto.preco * req.body['quantidade_produtos_vendidos'];
         const venda = await vendaRepository.insert(req.body);
+        await estoqueRepository.updateQuantidadeProduto(venda.produtoId, venda.quantidade_produtos_vendidos);
         res.status(201).json(venda);
     } catch (error) {
         console.error(error);

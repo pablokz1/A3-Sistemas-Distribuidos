@@ -1,4 +1,4 @@
-const http = require('http')
+const http = require('http');
 const app = require('./src/app');
 
 const port = parseInt(process.env.PORT) || 3001;
